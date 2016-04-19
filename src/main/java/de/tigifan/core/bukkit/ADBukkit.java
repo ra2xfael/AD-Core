@@ -9,6 +9,8 @@ public class ADBukkit extends JavaPlugin {
 
     private static ADBukkit instance;
 
+    public String Prefix = "§7[§aApolloDöner§7] ";
+
     @Override
     public void onEnable() {
         System.out.println("[AD-Core] Enabling plugin version " + this.getDescription().getVersion() + "!");
@@ -19,7 +21,7 @@ public class ADBukkit extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        System.out.println("[AD-Core] Plugin disabled!");
     }
 
     public static ADBukkit getInstance() {
