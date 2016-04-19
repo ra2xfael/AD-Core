@@ -1,0 +1,4 @@
+name: AD-Core
+version: 1.0
+author: Tigifan
+main: de.tigifan.core.bukkit.ADBukkit
