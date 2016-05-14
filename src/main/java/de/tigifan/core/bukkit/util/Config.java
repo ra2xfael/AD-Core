@@ -17,7 +17,7 @@ import java.io.InputStream;
  */
 public class Config {
 
-    private YamlConfiguration configFile;
+    private YamlConfiguration configFile = new YamlConfiguration();
     private File file;
     private boolean loaded = false;
     private Plugin plugin;
@@ -26,6 +26,7 @@ public class Config {
     public Config(String fileName) {
         this.plugin = ADBukkit.getInstance();
         this.fileName = fileName;
+        loadConfig();
     }
 
     public YamlConfiguration getConfig() {
@@ -39,7 +40,7 @@ public class Config {
         return file;
     }
 
-    public void loadConfig() {
+    private void loadConfig() {
         file = new File(Bukkit.getServer().getPluginManager().getPlugin(this.plugin.getName()).getDataFolder(), fileName);
         if (file.exists()) {
             configFile = new YamlConfiguration();
@@ -49,9 +50,9 @@ public class Config {
                 e.printStackTrace();
             }
             loaded = true;
-            System.out.println("[OITC] " + fileName + " loaded!");
+            MessageUtil.printConsoleMessage(fileName + " loaded!");
         } else {
-            System.out.println("[OITC] " + fileName + " created!");
+            MessageUtil.printConsoleMessage(fileName + " created!");
             try {
                 Bukkit.getServer().getPluginManager().getPlugin(plugin.getName()).getDataFolder().mkdir();
                 InputStream jarURL = Config.class.getResourceAsStream("/" + fileName);

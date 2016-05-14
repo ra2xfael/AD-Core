@@ -1,0 +1,16 @@
+#Messages
+
+isNoPlayer: '&cDu musst ein Spieler sein!'
+playerNotFound: '&cDer Spieler &l%player% &cwurde nicht gefunden!'
+noPermission: '&cDu hast keine Rechte um &l%cmd% &causzuführen!'
+
+join: '&7&l%player% &7hat den Server betreten!'
+leave: '&7&l%player% &7hat den Server verlassen!'
+
+gamemode:
+  syntax: '&7/gamemode <Mode> <Spieler>'
+  modeNotFound: '&cDer Spielmodus &l%mode% &cwurde nicht gefunden!'
+  changedMode: '&7Dein Spielmodus wurde geändert!'
+  changedModeOther: '&7Der Spieler von &l%player% &7wurde geändert!'
+heal:
+  syntax: '&7/heal <Spieler>'
