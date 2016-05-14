@@ -8,3 +8,9 @@ commands:
         description: Aendert deinen Gamemode
         permissions: ad.gamemode
         aliases: [gm]
+    heal:
+        description: Heilt dich
+        permissions: ad.heal
+    feed:
+        description: Saettigt dich
+        permission: ad.feed

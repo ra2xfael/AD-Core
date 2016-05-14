@@ -14,3 +14,9 @@ gamemode:
   changedModeOther: '&7Der Spieler von &l%player% &7wurde geändert!'
 heal:
   syntax: '&7/heal <Spieler>'
+  healed: '&7Du wurdest geheilt!'
+  healedOther: '&7Du hast &l%player% &7geheilt!'
+feed:
+  syntax: '&7/feed <Spieler>'
+  feeded: '&7Deim Hunger wurde gesättigt!'
+  healedOther: '&7Der Hunger von &l%player% &7wurde gesättigt!'

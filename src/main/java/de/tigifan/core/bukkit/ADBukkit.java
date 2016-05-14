@@ -1,6 +1,9 @@
 package de.tigifan.core.bukkit;
 
+import de.tigifan.core.bukkit.commands.FeedCommand;
 import de.tigifan.core.bukkit.commands.GamemodeCommand;
+import de.tigifan.core.bukkit.commands.HealCommand;
+import de.tigifan.core.bukkit.commands.TeleportCommand;
 import de.tigifan.core.bukkit.listeners.PlayerJoinListener;
 import de.tigifan.core.bukkit.listeners.PlayerLeaveListener;
 import de.tigifan.core.bukkit.util.Config;
@@ -42,7 +45,7 @@ public class ADBukkit extends JavaPlugin {
     private void loadConfigs() {
         String[] files = { "config.yml", "messages.yml" };
         String[] type = { "CONFIGURATION", "MESSAGES" };
-        for(int i = 0; i < files.length; i++) {
+        for(int i = 0; i < 2; i++) {
             MessageUtil.printConsoleMessage("&7Loading &6" + files[i] + "&7!");
             Config config = new Config(files[i]);
 
@@ -61,6 +64,9 @@ public class ADBukkit extends JavaPlugin {
 
     private void registerCommands() {
         this.getCommand("gamemode").setExecutor(new GamemodeCommand());
+        this.getCommand("heal").setExecutor(new HealCommand());
+        this.getCommand("feed").setExecutor(new FeedCommand());
+        this.getCommand("teleport").setExecutor(new TeleportCommand());
     }
 
     public static ADBukkit getInstance() {

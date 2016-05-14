@@ -11,11 +11,11 @@ import org.bukkit.entity.Player;
 /**
  * Created by Tigifan on 14.05.2016.
  */
-public class HealCommand implements CommandExecutor {
+public class FeedCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!sender.hasPermission("ad.heal")) {
+        if(!sender.hasPermission("ad.feed")) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -26,12 +26,11 @@ public class HealCommand implements CommandExecutor {
                     return true;
                 }
                 Player player = (Player) sender;
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("heal.healed"));
-                player.setHealth(20);
+                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feeded"));
                 player.setFoodLevel(20);
                 break;
             case 1:
-                if(!sender.hasPermission("ad.heal.other")) {
+                if(!sender.hasPermission("ad.feed.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }
@@ -40,8 +39,8 @@ public class HealCommand implements CommandExecutor {
                     return true;
                 targetPlayer.setHealth(20);
                 targetPlayer.setFoodLevel(20);
-                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("heal.healed"));
-                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("heal.healedOther").replace("%player%", targetPlayer.getName()));
+                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feeded"));
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feededOther").replace("%player%", targetPlayer.getName()));
                 break;
         }
         return false;
