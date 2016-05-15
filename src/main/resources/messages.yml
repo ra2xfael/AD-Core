@@ -1,5 +1,7 @@
 #Messages
 
+Prefix: '&7[&aApolloDöner&7] '
+
 isNoPlayer: '&cDu musst ein Spieler sein!'
 playerNotFound: '&cDer Spieler &l%player% &cwurde nicht gefunden!'
 noPermission: '&cDu hast keine Rechte um &l%cmd% &causzuführen!'
@@ -20,3 +22,22 @@ feed:
   syntax: '&7/feed <Spieler>'
   feeded: '&7Deim Hunger wurde gesättigt!'
   healedOther: '&7Der Hunger von &l%player% &7wurde gesättigt!'
+teleport:
+  syntax: '&7/teleport <Spieler> <Spieler>'
+  to: '&7&l%player% &7hat sich zu dir teleportiert!'
+  teleported: '&7Du wurdest zu &l%player% &7teleportiert!'
+  success: '&7&l%from% &7wurde erfolgreich zu &l%to% &7teleportiert!'
+  isSame: '&cDu kannst dich nicht zu dir teleportieren!'
+setspawn:
+  syntax: '&7/setspawn <Name>'
+  created: '&7Du hast den Spawn &l%spawn% &7gesetzt!'
+  defaultNotSet: '&cDer defaultSpawn &l%spawn% &cwurde noch nicht gesetzt!'
+  successful: '&7Der Spawn &l%spawn% &7wurde erfolgreich gesetzt!'
+fly:
+  syntax: '&7/fly <Spieler>'
+  flyed: '&7Du kannst nun fliegen!'
+  flyedOther: '&7&l%player% &7kann nun fliegen!'
+spawn:
+  notFound: '&7Der Spawn &l%spawn% &7wurde nicht gefunden!'
+  successful: '&7Du wurdest erfolgreich zum Spawn &l%spawn% &7teleportiert!'
+

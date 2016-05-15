@@ -14,3 +14,17 @@ commands:
     feed:
         description: Saettigt dich
         permission: ad.feed
+    teleport:
+        description: Teleportiert dich
+        permission: ad.teleport
+        aliases: [tp]
+    setspawn:
+        description: Setzt Spawns
+        permission: ad.setspawn
+    fly:
+        description: Gibt Fly
+        permission: ad.fly
+    spawn:
+        description: Teleportiert dich zum Spawn
+        permission: ad.spawn
+

@@ -1,1 +1,13 @@
 #Config
+
+defaultSpawn: spawn
+spawnOnJoin: true
+
+spawns:
+  spawn:
+    World: world
+    X: 0
+    Y: 0
+    Z: 0
+    Yaw: 0
+    Pitch: 0

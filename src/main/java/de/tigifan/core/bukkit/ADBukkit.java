@@ -1,14 +1,12 @@
 package de.tigifan.core.bukkit;
 
-import de.tigifan.core.bukkit.commands.FeedCommand;
-import de.tigifan.core.bukkit.commands.GamemodeCommand;
-import de.tigifan.core.bukkit.commands.HealCommand;
-import de.tigifan.core.bukkit.commands.TeleportCommand;
+import de.tigifan.core.bukkit.commands.*;
 import de.tigifan.core.bukkit.listeners.PlayerJoinListener;
 import de.tigifan.core.bukkit.listeners.PlayerLeaveListener;
 import de.tigifan.core.bukkit.util.Config;
 import de.tigifan.core.bukkit.util.ConfigType;
 import de.tigifan.core.bukkit.util.MessageUtil;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -30,6 +28,7 @@ public class ADBukkit extends JavaPlugin {
         instance = this;
 
         loadConfigs();
+        initalize();
 
         registerEvents();
         registerCommands();
@@ -67,9 +66,16 @@ public class ADBukkit extends JavaPlugin {
         this.getCommand("heal").setExecutor(new HealCommand());
         this.getCommand("feed").setExecutor(new FeedCommand());
         this.getCommand("teleport").setExecutor(new TeleportCommand());
+        this.getCommand("setspawn").setExecutor(new SetspawnCommand());
+        this.getCommand("fly").setExecutor(new FlyCommand());
+        this.getCommand("spawn").setExecutor(new SpawnCommand());
     }
 
     public static ADBukkit getInstance() {
         return instance;
+    }
+
+    private void initalize() {
+        Prefix = ChatColor.translateAlternateColorCodes('&', ADBukkit.getConfig(ConfigType.MESSAGES).getConfig().getString("Prefix"));
     }
 }

@@ -37,7 +37,7 @@ public class GamemodeCommand implements CommandExecutor {
                 }
                 break;
             case 2:
-                if(sender.hasPermission("ad.gamemode.other")) {
+                if(!sender.hasPermission("ad.gamemode.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }

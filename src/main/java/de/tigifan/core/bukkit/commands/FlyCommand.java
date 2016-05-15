@@ -9,13 +9,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Created by Tigifan on 14.05.2016.
+ * Created by Tigifan on 15.05.2016.
  */
-public class FeedCommand implements CommandExecutor {
+public class FlyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!sender.hasPermission("ad.feed")) {
+        if(!sender.hasPermission("ad.fly")) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -26,20 +26,20 @@ public class FeedCommand implements CommandExecutor {
                     return true;
                 }
                 Player player = (Player) sender;
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feeded"));
-                player.setFoodLevel(20);
+                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyed"));
+                player.setFlying(!player.getAllowFlight());
                 break;
             case 1:
-                if(!sender.hasPermission("ad.feed.other")) {
+                if(!sender.hasPermission("ad.fly.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[0]);
                 if(targetPlayer == null)
                     return true;
-                targetPlayer.setFoodLevel(20);
-                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feeded"));
-                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.feededOther").replace("%player%", targetPlayer.getName()));
+                targetPlayer.setFlying(!targetPlayer.getAllowFlight());
+                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyed"));
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyedOther").replace("%player%", targetPlayer.getName()));
                 break;
         }
         return false;
