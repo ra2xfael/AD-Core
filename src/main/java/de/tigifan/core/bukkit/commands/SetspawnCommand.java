@@ -42,7 +42,7 @@ public class SetspawnCommand implements CommandExecutor {
                 ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().set("spawns." + spawn + ".Pitch", location.getPitch());
                 try {
                     ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().save(ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfigFile());
-                    player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.successful").replace("%spawn%", spawn));
+                    player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.success").replace("%spawn%", spawn));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

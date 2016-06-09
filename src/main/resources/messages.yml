@@ -32,7 +32,7 @@ setspawn:
   syntax: '&7/setspawn <Name>'
   created: '&7Du hast den Spawn &l%spawn% &7gesetzt!'
   defaultNotSet: '&cDer defaultSpawn &l%spawn% &cwurde noch nicht gesetzt!'
-  successful: '&7Der Spawn &l%spawn% &7wurde erfolgreich gesetzt!'
+  success: '&7Der Spawn &l%spawn% &7wurde erfolgreich gesetzt!'
 fly:
   syntax: '&7/fly <Spieler>'
   flyed: '&7Du kannst nun fliegen!'
@@ -40,4 +40,7 @@ fly:
 spawn:
   notFound: '&7Der Spawn &l%spawn% &7wurde nicht gefunden!'
   successful: '&7Du wurdest erfolgreich zum Spawn &l%spawn% &7teleportiert!'
-
+back:
+  syntax: '&7/back <Spieler>'
+  success: '&7Du wurdest zu &ldeinem &7letzten Teleport-Punkt teleportiert!'
+  successOther: '&7Du wurdest zu &l%players% letztem Teleport-Punkt teleportiert!'
