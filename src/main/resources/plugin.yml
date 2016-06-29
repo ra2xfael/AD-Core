@@ -27,4 +27,7 @@ commands:
     spawn:
         description: Teleportiert dich zum Spawn
         permission: ad.spawn
+    back:
+        description: Teleportiert dich zu deiner letzten Location
+        permission: ad.back
 
