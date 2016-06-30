@@ -34,7 +34,7 @@ public class Config {
     }
 
     public File getConfigFile() {
-        if(!loaded) {
+        if (!loaded) {
             loadConfig();
         }
         return file;

@@ -4,6 +4,7 @@ import de.tigifan.core.bukkit.commands.*;
 import de.tigifan.core.bukkit.listeners.PlayerDeathListener;
 import de.tigifan.core.bukkit.listeners.PlayerJoinListener;
 import de.tigifan.core.bukkit.listeners.PlayerLeaveListener;
+import de.tigifan.core.bukkit.sql.SQL;
 import de.tigifan.core.bukkit.util.Config;
 import de.tigifan.core.bukkit.util.ConfigType;
 import de.tigifan.core.bukkit.util.MessageUtil;
@@ -31,6 +32,8 @@ public class ADBukkit extends JavaPlugin {
         loadConfigs();
         initalize();
 
+        SQL.connect();
+
         registerEvents();
         registerCommands();
 
@@ -39,13 +42,13 @@ public class ADBukkit extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("[AD-Core] Plugin disabled!");
+        MessageUtil.printConsoleMessage("&7Plugin disabled!");
     }
 
     private void loadConfigs() {
-        String[] files = { "config.yml", "messages.yml" };
-        String[] type = { "CONFIGURATION", "MESSAGES" };
-        for(int i = 0; i < 2; i++) {
+        String[] files = {"config.yml", "messages.yml"};
+        String[] type = {"CONFIGURATION", "MESSAGES"};
+        for (int i = 0; i < 2; i++) {
             MessageUtil.printConsoleMessage("&7Loading &6" + files[i] + "&7!");
             Config config = new Config(files[i]);
 

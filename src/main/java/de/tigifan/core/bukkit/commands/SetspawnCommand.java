@@ -17,12 +17,12 @@ public class SetspawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("isNoPlayer"));
             return true;
         }
         Player player = (Player) sender;
-        if(!player.hasPermission("ad.setspawn")) {
+        if (!player.hasPermission("ad.setspawn")) {
             player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -31,7 +31,7 @@ public class SetspawnCommand implements CommandExecutor {
                 Location location = player.getLocation();
                 String defaultSpawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
                 String spawn = args[0];
-                if(!args[0].equalsIgnoreCase(defaultSpawn) && ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble("spawns." + defaultSpawn + ".Y") == 0) {
+                if (!args[0].equalsIgnoreCase(defaultSpawn) && ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble("spawns." + defaultSpawn + ".Y") == 0) {
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.defaultNotSet").replace("%spawn%", defaultSpawn));
                 }
                 ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().set("spawns." + spawn + ".World", location.getWorld().getName());

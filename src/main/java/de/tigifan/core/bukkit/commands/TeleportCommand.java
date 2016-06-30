@@ -16,13 +16,13 @@ public class TeleportCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        switch(args.length) {
+        switch (args.length) {
             default:
                 sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.syntax"));
                 break;
             case 1:
-                if(sender instanceof Player) {
-                    Player player = (Player)sender;
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
                     Player targetPlayer = CommandUtil.getPlayer(player, args[0]);
 
                     if (targetPlayer == null) {
@@ -37,16 +37,16 @@ public class TeleportCommand implements CommandExecutor {
             case 2:
                 Player player = CommandUtil.getPlayer(sender, args[0]);
                 Player targetPlayer = null;
-                if(player != null) {
+                if (player != null) {
                     targetPlayer = CommandUtil.getPlayer(player, args[1]);
                 }
 
 
-                if(targetPlayer == null) {
+                if (targetPlayer == null) {
                     return true;
                 }
 
-                if(targetPlayer == player) {
+                if (targetPlayer == player) {
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.isSame"));
                     return true;
                 }
@@ -61,14 +61,14 @@ public class TeleportCommand implements CommandExecutor {
             case 4:
                 player = CommandUtil.getPlayer(sender, args[0]);
 
-                if(player == null) {
+                if (player == null) {
                     return true;
                 }
 
                 double x = Double.parseDouble(args[1]);
                 double y = Double.parseDouble(args[2]);
                 double z = Double.parseDouble(args[3]);
-                Location loc = new Location(player.getWorld(),x,y,z);
+                Location loc = new Location(player.getWorld(), x, y, z);
                 player.teleport(loc);
                 BackCommand.setPlayer(player, player.getLocation());
 

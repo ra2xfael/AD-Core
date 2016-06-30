@@ -9,6 +9,6 @@ import org.bukkit.ChatColor;
 public class MessageUtil {
 
     public static void printConsoleMessage(String msg) {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&bAD-Core&7] " +  msg));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&bAD-Core&7] " + msg));
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>de.tigifan</groupId>
     <artifactId>ADCore</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -49,8 +49,8 @@
                     <fork>true</fork>
                     <compilerVersion>1.8</compilerVersion>
                     <encoding>UTF-8</encoding>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>

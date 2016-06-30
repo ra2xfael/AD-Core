@@ -18,11 +18,11 @@ public class SpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("isNoPlayer"));
             return true;
         }
-        if(!sender.hasPermission("ad.spawn")) {
+        if (!sender.hasPermission("ad.spawn")) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -30,7 +30,7 @@ public class SpawnCommand implements CommandExecutor {
         switch (args.length) {
             case 0:
                 String defaultSpawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
-                if(getLocation("spawns." + defaultSpawn).getBlockY() == 0) {
+                if (getLocation("spawns." + defaultSpawn).getBlockY() == 0) {
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.defaultNotSet").replace("%spawn%", defaultSpawn));
                     return true;
                 }
@@ -39,7 +39,7 @@ public class SpawnCommand implements CommandExecutor {
                 break;
             case 1:
                 String spawn = args[0];
-                if(getLocation("spawns." + spawn) == null) {
+                if (getLocation("spawns." + spawn) == null) {
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.notFound").replace("%spawn%", spawn));
                     return true;
                 }
@@ -60,6 +60,6 @@ public class SpawnCommand implements CommandExecutor {
         float yaw = (float) ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble(path + ".Yaw");
         float pitch = (float) ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble(path + ".Pitch");
 
-        return new Location(world, x ,y ,z, yaw, pitch);
+        return new Location(world, x, y, z, yaw, pitch);
     }
 }

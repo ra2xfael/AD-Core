@@ -15,13 +15,13 @@ public class FlyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!sender.hasPermission("ad.fly")) {
+        if (!sender.hasPermission("ad.fly")) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
         switch (args.length) {
             case 0:
-                if(!(sender instanceof Player)) {
+                if (!(sender instanceof Player)) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("isNoPlayer"));
                     return true;
                 }
@@ -30,12 +30,12 @@ public class FlyCommand implements CommandExecutor {
                 player.setFlying(!player.getAllowFlight());
                 break;
             case 1:
-                if(!sender.hasPermission("ad.fly.other")) {
+                if (!sender.hasPermission("ad.fly.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[0]);
-                if(targetPlayer == null)
+                if (targetPlayer == null)
                     return true;
                 targetPlayer.setFlying(!targetPlayer.getAllowFlight());
                 targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyed"));

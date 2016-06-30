@@ -3,7 +3,6 @@ package de.tigifan.core.bukkit.commands;
 import de.tigifan.core.bukkit.ADBukkit;
 import de.tigifan.core.bukkit.util.CommandUtil;
 import de.tigifan.core.bukkit.util.ConfigType;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,7 +16,7 @@ public class GamemodeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!sender.hasPermission("ad.gamemode")) {
+        if (!sender.hasPermission("ad.gamemode")) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -26,26 +25,26 @@ public class GamemodeCommand implements CommandExecutor {
                 sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("gamemode.syntax"));
                 return true;
             case 1:
-                if(!(sender instanceof Player)) {
+                if (!(sender instanceof Player)) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("isNoPlayer"));
                     return true;
                 }
                 Player player = (Player) sender;
-                if(getGameMode(player, args[0]) != null) {
+                if (getGameMode(player, args[0]) != null) {
                     player.setGameMode(getGameMode(player, args[0]));
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("gamemode.changedMode"));
                 }
                 break;
             case 2:
-                if(!sender.hasPermission("ad.gamemode.other")) {
+                if (!sender.hasPermission("ad.gamemode.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[1]);
-                if(targetPlayer == null)
+                if (targetPlayer == null)
                     return true;
 
-                if(getGameMode(sender, args[0]) == null) {
+                if (getGameMode(sender, args[0]) == null) {
                     return true;
                 }
 
@@ -76,7 +75,7 @@ public class GamemodeCommand implements CommandExecutor {
                 default:
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("gamemode.modeNotFound").replace("%mode%", mode));
             }
-            if(gameMode != null)
+            if (gameMode != null)
                 return gameMode;
 
         } catch (Exception ex) {

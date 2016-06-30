@@ -11,3 +11,11 @@ spawns:
     Z: 0
     Yaw: 0
     Pitch: 0
+
+mysql:
+  use: false
+  host: 127.0.0.1
+  port: 3306
+  database: ad
+  user: ad
+  passwort: password

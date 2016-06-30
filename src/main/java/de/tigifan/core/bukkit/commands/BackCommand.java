@@ -20,12 +20,12 @@ public class BackCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("isNoPlayer"));
             return true;
         }
         Player player = (Player) sender;
-        if(!player.hasPermission("ad.back")) {
+        if (!player.hasPermission("ad.back")) {
             player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
             return true;
         }
@@ -35,12 +35,12 @@ public class BackCommand implements CommandExecutor {
                 player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("back.success"));
                 break;
             case 1:
-                if(!sender.hasPermission("ad.back.other")) {
+                if (!sender.hasPermission("ad.back.other")) {
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission").replace("%cmd%", label));
                     return true;
                 }
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[0]);
-                if(targetPlayer == null)
+                if (targetPlayer == null)
                     return true;
 
                 player.teleport(backLocations.get(targetPlayer));
@@ -51,7 +51,7 @@ public class BackCommand implements CommandExecutor {
     }
 
     public static void setPlayer(Player player, Location location) {
-        if(backLocations.containsKey(player)) {
+        if (backLocations.containsKey(player)) {
             backLocations.remove(player);
         }
         backLocations.put(player, location);

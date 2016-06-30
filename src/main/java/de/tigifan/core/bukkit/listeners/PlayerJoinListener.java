@@ -3,10 +3,8 @@ package de.tigifan.core.bukkit.listeners;
 import de.tigifan.core.bukkit.ADBukkit;
 import de.tigifan.core.bukkit.util.ConfigType;
 import org.bukkit.Bukkit;
-import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.DoubleChest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -21,7 +19,7 @@ public class PlayerJoinListener implements Listener {
         event.setJoinMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("join").replace("%player%", event.getPlayer().getName()));
 
         String mainSpawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
-        if(ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getBoolean("spawnOnJoin") && ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble("spawns." + mainSpawn + ".Y") != 0d) {
+        if (ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getBoolean("spawnOnJoin") && ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble("spawns." + mainSpawn + ".Y") != 0d) {
             String spawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
 
             World world = Bukkit.getWorld(ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("spawns." + spawn + ".World"));
