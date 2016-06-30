@@ -32,10 +32,10 @@ public class ADBukkit extends JavaPlugin {
         loadConfigs();
         initalize();
 
-        SQL.connect();
-
         registerEvents();
         registerCommands();
+
+        SQL.connect();
 
         MessageUtil.printConsoleMessage("&7Plugin version &6" + this.getDescription().getVersion() + " &7enabled!");
     }
