@@ -43,7 +43,7 @@ public class RankManager implements CommandExecutor {
                         return false;
                     }
                     long millis = getSince(player.getUniqueId());
-                    SimpleDateFormat dateFormatToTime = new SimpleDateFormat("h:m:s d.MM.YYYY");
+                    SimpleDateFormat dateFormatToTime = new SimpleDateFormat("hh:mm:ss dd.MM.YYYY");
 
                     String time = dateFormatToTime.format(new Date(millis));
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.rank").replace("%rank%", getRank(player.getUniqueId())));
@@ -61,7 +61,6 @@ public class RankManager implements CommandExecutor {
                 return false;
             }
             String rank = args[2];
-            System.out.println(args[1] + ": " + args[2]);
             if(addRank(player.getUniqueId(), rank))
                 sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.promoted").replace("%player%", player.getName()));
             else
