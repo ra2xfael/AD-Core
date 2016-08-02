@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by Tigifan on 30.06.2016.
@@ -22,10 +23,12 @@ public class RankManager implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(sender.hasPermission("ad.rank")) {
+        if(!sender.hasPermission("ad.rank")) {
+            sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("noPermission"));
             return false;
         }
-        if(args.length == 1) {
+
+        if(args.length == 2) {
             switch (args[0]) {
                 case "get":
                     Player player = CommandUtil.getPlayer(sender, args[1]);
@@ -34,30 +37,35 @@ public class RankManager implements CommandExecutor {
                         return false;
                     }
 
-                    sender.sendMessage(ADBukkit.getConfig(ConfigType.CONFIGURATION).getMessage("rank.design").replace("%player%", player.getName()));
+                    sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.design").replace("%player%", player.getName()));
                     if(getSince(player.getUniqueId()) == 0) {
-                        sender.sendMessage(ADBukkit.getConfig(ConfigType.CONFIGURATION).getMessage("rank.rank").replace("%rank%", getRank(player.getUniqueId())));
+                        sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.rank").replace("%rank%", getRank(player.getUniqueId())));
                         return false;
                     }
-                    SimpleDateFormat dateFormatToDate = new SimpleDateFormat("YYYYMMdhms");
-                    Date date = new Date(dateFormatToDate.format(getSince(player.getUniqueId())));
+                    long millis = getSince(player.getUniqueId());
                     SimpleDateFormat dateFormatToTime = new SimpleDateFormat("h:m:s d.MM.YYYY");
-                    String time = dateFormatToTime.format(date);
-                    sender.sendMessage(ADBukkit.getConfig(ConfigType.CONFIGURATION).getMessage("rank.rank").replace("%rank%", getRank(player.getUniqueId())));
-                    sender.sendMessage(ADBukkit.getConfig(ConfigType.CONFIGURATION).getMessage("rank.since").replace("%time%", time));
+
+                    String time = dateFormatToTime.format(new Date(millis));
+                    sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.rank").replace("%rank%", getRank(player.getUniqueId())));
+                    sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.since").replace("%time%", time));
+
                     break;
                 default:
                     sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.syntax"));
                     break;
             }
-        } else if (args.length == 3) {
-            switch (args[0]) {
-                case "promote":
-
-                    break;
-                default:
-
+        } else if ((args.length == 3) && args[0].equalsIgnoreCase("promote")) {
+            Player player = CommandUtil.getPlayer(sender, args[1]);
+            if(player == null) {
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("playerNotFound").replace("%player%", args[2]));
+                return false;
             }
+            String rank = args[2];
+            System.out.println(args[1] + ": " + args[2]);
+            if(addRank(player.getUniqueId(), rank))
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.promoted").replace("%player%", player.getName()));
+            else
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("sqlException"));
         } else {
             sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("rank.syntax"));
             return true;
@@ -68,7 +76,7 @@ public class RankManager implements CommandExecutor {
 
     public static void createDatabase() {
         try {
-            PreparedStatement preparedStatement = SQL.prepareStatement("CREATE TABLE IF NOT EXISTS rank(uuid VARCHAR(36) NOT NULL, rank VARCHAR(100) NOT NULL, since BIGINT(14))");
+            PreparedStatement preparedStatement = SQL.prepareStatement("CREATE TABLE IF NOT EXISTS rank(uuid VARCHAR(36) NOT NULL, rank VARCHAR(100) NOT NULL, since BIGINT(30))");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +108,7 @@ public class RankManager implements CommandExecutor {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
-                return resultSet.getInt("since");
+                return resultSet.getLong("since");
             }
             return 0;
         } catch (SQLException e) {
@@ -109,17 +117,18 @@ public class RankManager implements CommandExecutor {
         return 0;
     }
 
-    public static void addRank(UUID uuid, String rank) {
+    private static boolean addRank(UUID uuid, String rank) {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMdhms");
-
-            long date = Long.parseLong(dateFormat.format(new Date()));
+            long date = System.currentTimeMillis();
             PreparedStatement preparedStatement = SQL.prepareStatement("INSERT INTO rank (uuid, rank, since) VALUES(?, ?, ?)");
             preparedStatement.setString(1, uuid.toString());
             preparedStatement.setString(2, rank);
             preparedStatement.setLong(3, date);
+            preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

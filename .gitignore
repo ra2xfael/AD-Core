@@ -3,4 +3,3 @@
 target
 # Created by .ignore support plugin (hsz.mobi)
 /dependency-reduced-pom.xml
-/src/main/java/de/tigifan/core/bukkit/sql/RankManager.java

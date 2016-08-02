@@ -7,10 +7,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Created by Tigifan on 19.04.2016.
@@ -88,6 +85,12 @@ public class Config {
     }
 
     public String getMessage(String path) {
-        return ADBukkit.getInstance().Prefix + ChatColor.translateAlternateColorCodes('&', this.configFile.getString(path));
+        try {
+            return ADBukkit.getInstance().Prefix + ChatColor.translateAlternateColorCodes('&', this.configFile.getString(path));
+        } catch (NullPointerException ex) {
+            System.err.println("[AD-Core] Es ist ein Fehler aufgetreten! Versuche die messages.yml zu löschen und den Server neuzustarten!");
+            ex.printStackTrace();
+        }
+        return "§4Bitte kontaktiere einen Admin!";
     }
 }

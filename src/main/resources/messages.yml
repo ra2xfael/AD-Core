@@ -5,6 +5,7 @@ Prefix: '&7[&aApolloDöner&7] '
 isNoPlayer: '&cDu musst ein Spieler sein!'
 playerNotFound: '&cDer Spieler &l%player% &cwurde nicht gefunden!'
 noPermission: '&cDu hast keine Rechte um &l%cmd% &causzuführen!'
+sqlException: '&cSQL Befehl konnte nicht ausgeführt werden!'
 
 join: '&7&l%player% &7hat den Server betreten!'
 leave: '&7&l%player% &7hat den Server verlassen!'
@@ -48,6 +49,8 @@ back:
   successOther: '&7Du wurdest zu &l%players% letztem Teleport-Punkt teleportiert!'
 rank:
   syntax: '&7/rank <get|Spieler> <rank|Spieler>'
-  design: '&7&m-----&l%player%&7&m-----'
+  design: '&7&m-----&7&l%player%&7&m-----'
   rank: '&7Rang: &l%rank%'
   since: '&7seit: &l%time%'
+  promoted: '&7&l%player% &7wurde promoted!'
+
