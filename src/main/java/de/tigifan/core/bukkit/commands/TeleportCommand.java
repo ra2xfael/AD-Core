@@ -28,10 +28,10 @@ public class TeleportCommand implements CommandExecutor {
                     if (targetPlayer == null) {
                         return true;
                     }
+                    BackCommand.setPlayer(player, player.getLocation());
                     player.teleport(targetPlayer);
                     targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.to").replace("%player%", player.getName()));
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.teleported").replace("%player%", targetPlayer.getName()));
-                    BackCommand.setPlayer(player, player.getLocation());
                 }
                 break;
             case 2:
@@ -50,13 +50,12 @@ public class TeleportCommand implements CommandExecutor {
                     player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.isSame"));
                     return true;
                 }
+                BackCommand.setPlayer(player, player.getLocation());
 
                 player.teleport(targetPlayer);
                 sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.success").replace("%from%", player.getName()).replace("%to%", targetPlayer.getName()));
                 player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.teleported").replace("%player%", targetPlayer.getName()));
                 targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("teleport.to").replace("%player%", player.getName()));
-
-                BackCommand.setPlayer(player, player.getLocation());
                 break;
             case 4:
                 player = CommandUtil.getPlayer(sender, args[0]);
@@ -64,13 +63,13 @@ public class TeleportCommand implements CommandExecutor {
                 if (player == null) {
                     return true;
                 }
+                BackCommand.setPlayer(player, player.getLocation());
 
                 double x = Double.parseDouble(args[1]);
                 double y = Double.parseDouble(args[2]);
                 double z = Double.parseDouble(args[3]);
                 Location loc = new Location(player.getWorld(), x, y, z);
                 player.teleport(loc);
-                BackCommand.setPlayer(player, player.getLocation());
 
                 break;
         }
