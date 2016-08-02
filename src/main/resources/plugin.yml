@@ -1,5 +1,5 @@
 name: AD-Core
-version: 1.0
+version: 1.1
 author: Tigifan
 main: de.tigifan.core.bukkit.ADBukkit
 
@@ -30,4 +30,7 @@ commands:
     back:
         description: Teleportiert dich zu deiner letzten Location
         permission: ad.back
+    rank:
+        description: Rank Manager
+        permission: ad.rank
 

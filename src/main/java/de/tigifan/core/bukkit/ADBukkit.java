@@ -4,6 +4,7 @@ import de.tigifan.core.bukkit.commands.*;
 import de.tigifan.core.bukkit.listeners.PlayerDeathListener;
 import de.tigifan.core.bukkit.listeners.PlayerJoinListener;
 import de.tigifan.core.bukkit.listeners.PlayerLeaveListener;
+import de.tigifan.core.bukkit.sql.RankManager;
 import de.tigifan.core.bukkit.sql.SQL;
 import de.tigifan.core.bukkit.util.Config;
 import de.tigifan.core.bukkit.util.ConfigType;
@@ -36,6 +37,7 @@ public class ADBukkit extends JavaPlugin {
         registerCommands();
 
         SQL.connect();
+        RankManager.createDatabase();
 
         MessageUtil.printConsoleMessage("&7Plugin version &6" + this.getDescription().getVersion() + " &7enabled!");
     }
@@ -75,6 +77,7 @@ public class ADBukkit extends JavaPlugin {
         this.getCommand("fly").setExecutor(new FlyCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getCommand("back").setExecutor(new BackCommand());
+        this.getCommand("rank").setExecutor(new RankManager());
     }
 
     public static ADBukkit getInstance() {

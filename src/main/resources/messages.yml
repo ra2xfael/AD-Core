@@ -13,7 +13,7 @@ gamemode:
   syntax: '&7/gamemode <Mode> <Spieler>'
   modeNotFound: '&cDer Spielmodus &l%mode% &cwurde nicht gefunden!'
   changedMode: '&7Dein Spielmodus wurde geändert!'
-  changedModeOther: '&7Der Spieler von &l%player% &7wurde geändert!'
+  changedModeOther: '&7Der Spielmodus von &l%player% &7wurde geändert!'
 heal:
   syntax: '&7/heal <Spieler>'
   healed: '&7Du wurdest geheilt!'
@@ -35,12 +35,19 @@ setspawn:
   success: '&7Der Spawn &l%spawn% &7wurde erfolgreich gesetzt!'
 fly:
   syntax: '&7/fly <Spieler>'
-  flyed: '&7Du kannst nun fliegen!'
-  flyedOther: '&7&l%player% &7kann nun fliegen!'
+  flight: '&7Du kannst nun fliegen!'
+  flightOther: '&7&l%player% &7kann nun fliegen!'
 spawn:
   notFound: '&7Der Spawn &l%spawn% &7wurde nicht gefunden!'
-  successful: '&7Du wurdest erfolgreich zum Spawn &l%spawn% &7teleportiert!'
+  successful:
+    specially: '&7Du wurdest erfolgreich zum Spawn &l%spawn% &7teleportiert!'
+    default: '&7Du wurdest erfolgreich zum Spawn teleportiert!'
 back:
   syntax: '&7/back <Spieler>'
   success: '&7Du wurdest zu &ldeinem &7letzten Teleport-Punkt teleportiert!'
   successOther: '&7Du wurdest zu &l%players% letztem Teleport-Punkt teleportiert!'
+rank:
+  syntax: '&7/rank <get|Spieler> <rank|Spieler>'
+  design: '&7&m-----&l%player%&7&m-----'
+  rank: '&7Rang: &l%rank%'
+  since: '&7seit: &l%time%'

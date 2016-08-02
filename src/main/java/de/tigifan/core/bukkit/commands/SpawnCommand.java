@@ -35,7 +35,7 @@ public class SpawnCommand implements CommandExecutor {
                     return true;
                 }
                 player.teleport(getLocation("spawns." + defaultSpawn));
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.successful").replace("%spawn%", defaultSpawn));
+                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.successful.default"));
                 break;
             case 1:
                 String spawn = args[0];
@@ -44,7 +44,7 @@ public class SpawnCommand implements CommandExecutor {
                     return true;
                 }
                 player.teleport(getLocation("spawns." + spawn));
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.successful").replace("%spawn%", spawn));
+                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.successful.specially").replace("%spawn%", spawn));
                 break;
             default:
                 player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("spawn.syntax"));

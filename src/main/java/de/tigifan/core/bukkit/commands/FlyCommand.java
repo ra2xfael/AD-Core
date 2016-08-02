@@ -3,6 +3,7 @@ package de.tigifan.core.bukkit.commands;
 import de.tigifan.core.bukkit.ADBukkit;
 import de.tigifan.core.bukkit.util.CommandUtil;
 import de.tigifan.core.bukkit.util.ConfigType;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,8 +27,8 @@ public class FlyCommand implements CommandExecutor {
                     return true;
                 }
                 Player player = (Player) sender;
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyed"));
-                player.setFlying(!player.getAllowFlight());
+                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight"));
+                player.setAllowFlight(!player.getAllowFlight());
                 break;
             case 1:
                 if (!sender.hasPermission("ad.fly.other")) {
@@ -37,9 +38,9 @@ public class FlyCommand implements CommandExecutor {
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[0]);
                 if (targetPlayer == null)
                     return true;
-                targetPlayer.setFlying(!targetPlayer.getAllowFlight());
-                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyed"));
-                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("feed.flyedOther").replace("%player%", targetPlayer.getName()));
+                targetPlayer.setAllowFlight(!targetPlayer.getAllowFlight());
+                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight"));
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flightOther").replace("%player%", targetPlayer.getName()));
                 break;
         }
         return false;

@@ -62,16 +62,11 @@ public class SQL {
         return con;
     }
 
-    public static PreparedStatement prepareStatement(String query) {
+    public static PreparedStatement prepareStatement(String query) throws SQLException {
         if (isConnected()) {
-            try {
-                con.prepareStatement(query);
-            } catch (SQLException e) {
-                MessageUtil.printConsoleMessage("&cMySQL couldn't run: " + query);
-                e.printStackTrace();
-            }
+                return con.prepareStatement(query);
         }
-        MessageUtil.printConsoleMessage("&cMySQL is not connected!");
-        return null;
+        SQL.connect();
+        return con.prepareStatement(query);
     }
 }
