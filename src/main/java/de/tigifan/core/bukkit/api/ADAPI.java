@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 /**
  * Created by Tigifan on 02.08.2016.
  */
-public class AD {
+public class ADAPI {
 
     public static ADBukkit getMain() {
         return ADBukkit.getInstance();
