@@ -131,7 +131,7 @@ public class RankManager implements CommandExecutor {
         }
     }
 
-    public static void removeRank(UUID uuid) {
+    private static void removeRank(UUID uuid) {
         try {
             PreparedStatement preparedStatement = SQL.prepareStatement("DELETE FROM rank WHERE uuid = ?");
             preparedStatement.setString(1, uuid.toString());
