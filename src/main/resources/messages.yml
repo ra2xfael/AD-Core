@@ -59,4 +59,10 @@ rank:
   promoted: '&7&l%player% &7wurde promoted!'
 death:
   player: '&7&l%player% &7ist gestorben!'
+download:
+  syntax: '&c/download <Link>'
+  download: '&7Der Download wird gestartet!'
+  downloaded: '&7&l%file% &7wurde erfolgreich heruntergeladen!'
+  exception: '&cEs ist ein Fehler aufgetreten!'
+  notFound: '&cDie Datei &l%link% &cwurde nicht gefunden!'
 

@@ -33,4 +33,8 @@ commands:
     rank:
         description: Rank Manager
         permission: ad.rank
+    download:
+        description: Download files into plugins-directory
+        permission: ad.download
+        aliases: [dl]
 
