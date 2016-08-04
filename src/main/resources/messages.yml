@@ -53,4 +53,6 @@ rank:
   rank: '&7Rang: &l%rank%'
   since: '&7seit: &l%time%'
   promoted: '&7&l%player% &7wurde promoted!'
+death:
+  player: '&7&l%player% &7ist gestorben!'
 

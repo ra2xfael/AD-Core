@@ -88,7 +88,7 @@ public class Config {
         try {
             return ADBukkit.getInstance().Prefix + ChatColor.translateAlternateColorCodes('&', this.configFile.getString(path));
         } catch (NullPointerException ex) {
-            System.err.println("[AD-Core] An exception occu! Versuche die messages.yml zu löschen und den Server neuzustarten!");
+            System.err.println("[AD-Core] An exception occurred! Try to delete the messages.yml and restart the server!");
             ex.printStackTrace();
         }
         return "§4Bitte kontaktiere einen Admin!";

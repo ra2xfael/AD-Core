@@ -52,7 +52,7 @@ public class SpawnCommand implements CommandExecutor {
         return false;
     }
 
-    private Location getLocation(String path) {
+    public static Location getLocation(String path) {
         World world = Bukkit.getWorld(ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString(path + ".World"));
         double x = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble(path + ".X");
         double y = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getDouble(path + ".Y");

@@ -1,6 +1,10 @@
 package de.tigifan.core.bukkit.listeners;
 
+import de.tigifan.core.bukkit.ADBukkit;
 import de.tigifan.core.bukkit.commands.BackCommand;
+import de.tigifan.core.bukkit.commands.SpawnCommand;
+import de.tigifan.core.bukkit.util.ConfigType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -12,6 +16,10 @@ public class PlayerDeathListener implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent ev) {
-        BackCommand.setPlayer(ev.getEntity(), ev.getEntity().getLocation());
+        Player player = ev.getEntity();
+        BackCommand.setPlayer(player, player.getLocation());
+
+        ev.setDeathMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("death.player").replace("%player%", player.getName()));
+        player.spigot().respawn();
     }
 }
