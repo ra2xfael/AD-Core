@@ -36,8 +36,12 @@ setspawn:
   success: '&7Der Spawn &l%spawn% &7wurde erfolgreich gesetzt!'
 fly:
   syntax: '&7/fly <Spieler>'
-  flight: '&7Du kannst nun fliegen!'
-  flightOther: '&7&l%player% &7kann nun fliegen!'
+  flight:
+    true: '&7Du kannst nun fliegen!'
+    false: '&7Du kannst nun nicht mehr fliegen!'
+  flightOther:
+    true: '&7&l%player% &7kann nun fliegen!'
+    false: '&7&l%player% &7kann nun nicht mehr fliegen!'
 spawn:
   notFound: '&7Der Spawn &l%spawn% &7wurde nicht gefunden!'
   successful:

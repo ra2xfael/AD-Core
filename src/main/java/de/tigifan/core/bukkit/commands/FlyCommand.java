@@ -27,7 +27,11 @@ public class FlyCommand implements CommandExecutor {
                     return true;
                 }
                 Player player = (Player) sender;
-                player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight"));
+                if(player.getAllowFlight())
+                    player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight.false"));
+                else
+                    player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight.true"));
+
                 player.setAllowFlight(!player.getAllowFlight());
                 break;
             case 1:
@@ -38,9 +42,18 @@ public class FlyCommand implements CommandExecutor {
                 Player targetPlayer = CommandUtil.getPlayer(sender, args[0]);
                 if (targetPlayer == null)
                     return true;
+                if(targetPlayer.getAllowFlight()) {
+                    targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight.false"));
+                    sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flightOther.false").replace("%player%", targetPlayer.getName()));
+                } else {
+                    targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight.true"));
+                    sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flightOther.true").replace("%player%", targetPlayer.getName()));
+                }
                 targetPlayer.setAllowFlight(!targetPlayer.getAllowFlight());
-                targetPlayer.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flight"));
-                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.flightOther").replace("%player%", targetPlayer.getName()));
+
+                break;
+            default:
+                sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("fly.syntax"));
                 break;
         }
         return false;
