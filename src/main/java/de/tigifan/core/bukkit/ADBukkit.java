@@ -1,10 +1,7 @@
 package de.tigifan.core.bukkit;
 
 import de.tigifan.core.bukkit.commands.*;
-import de.tigifan.core.bukkit.listeners.PlayerDeathListener;
-import de.tigifan.core.bukkit.listeners.PlayerJoinListener;
-import de.tigifan.core.bukkit.listeners.PlayerLeaveListener;
-import de.tigifan.core.bukkit.listeners.PlayerRespawnListener;
+import de.tigifan.core.bukkit.listeners.*;
 import de.tigifan.core.bukkit.sql.RankManager;
 import de.tigifan.core.bukkit.sql.SQL;
 import de.tigifan.core.bukkit.util.Config;
@@ -68,6 +65,7 @@ public class ADBukkit extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
+        this.getServer().getPluginManager().registerEvents(new SignChangeListener(), this);
     }
 
     private void registerCommands() {
