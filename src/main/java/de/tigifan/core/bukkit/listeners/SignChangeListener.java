@@ -13,9 +13,10 @@ public class SignChangeListener implements Listener {
 
     @EventHandler
     public void onSignChange(SignChangeEvent ev) {
-
-        for(int i = 0; i < 3; i++) {
-            System.out.println(ev.getLine(i));
+        if(!ev.getPlayer().hasPermission("ad.coloredsign")) {
+            return;
+        }
+        for(int i = 0; i < 4; i++) {
             ev.setLine(i, ChatColor.translateAlternateColorCodes('&', ev.getLine(i)));
         }
     }

@@ -42,6 +42,7 @@ public class ADBukkit extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        SQL.disconnect();
         MessageUtil.printConsoleMessage("&7Plugin disabled!");
     }
 
@@ -78,7 +79,7 @@ public class ADBukkit extends JavaPlugin {
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getCommand("back").setExecutor(new BackCommand());
         this.getCommand("rank").setExecutor(new RankManager());
-        this.getCommand("download").setExecutor(new DownloadCommand());
+        this.getCommand("filedownload").setExecutor(new DownloadCommand());
     }
 
     public static ADBukkit getInstance() {
