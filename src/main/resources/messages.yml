@@ -65,4 +65,7 @@ download:
   downloaded: '&7&l%file% &7wurde erfolgreich heruntergeladen!'
   exception: '&cEs ist ein Fehler aufgetreten!'
   notFound: '&cDie Datei &l%link% &cwurde nicht gefunden!'
+playerhead:
+  syntax: '&c/ph <Spielername>'
+  success: '&7Du hast den Kopf von &l%player% &7erhalten!'
 

@@ -91,6 +91,6 @@ public class Config {
             System.err.println("[AD-Core] An exception occurred! Try to delete the messages.yml and restart the server!");
             ex.printStackTrace();
         }
-        return "§4Bitte kontaktiere einen Admin!";
+        return "§cDie Nachricht §l" + path + " &cwurde nicht gefunden!";
     }
 }

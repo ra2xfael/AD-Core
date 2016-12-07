@@ -37,4 +37,8 @@ commands:
         description: Download files into plugins-directory
         permission: ad.download
         aliases: [fdl]
+    playerhead:
+        description: Gibt dir einen Spielerkopf
+        permission: ad.playerhead
+        aliases: [ph]
 

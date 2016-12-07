@@ -74,33 +74,39 @@ public class RankManager implements CommandExecutor {
     }
 
     public static void createDatabase() {
-        try {
-            PreparedStatement preparedStatement = SQL.prepareStatement("CREATE TABLE IF NOT EXISTS rank(uuid VARCHAR(36) NOT NULL, rank VARCHAR(100) NOT NULL, since BIGINT(30))");
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(SQL.isConnected()) {
+            try {
+                PreparedStatement preparedStatement = SQL.prepareStatement("CREATE TABLE IF NOT EXISTS rank(uuid VARCHAR(36) NOT NULL, rank VARCHAR(100) NOT NULL, since BIGINT(30))");
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private static String getRank(UUID uuid) {
-        try {
-            PreparedStatement preparedStatement = SQL.prepareStatement("SELECT rank FROM rank WHERE uuid = ?");
-            preparedStatement.setString(1, uuid.toString());
+        if(SQL.isConnected()) {
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            try {
+                PreparedStatement preparedStatement = SQL.prepareStatement("SELECT rank FROM rank WHERE uuid = ?");
+                preparedStatement.setString(1, uuid.toString());
 
-            if(resultSet.next()) {
-                return resultSet.getString("rank");
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    return resultSet.getString("rank");
+                }
+                return "None";
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            return "None";
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return "None";
     }
 
     private static long getSince(UUID uuid) {
-        try {
+        if(SQL.isConnected()) {
+            try {
             PreparedStatement preparedStatement = SQL.prepareStatement("SELECT since FROM rank WHERE uuid = ?");
             preparedStatement.setString(1, uuid.toString());
 
@@ -110,34 +116,40 @@ public class RankManager implements CommandExecutor {
                 return resultSet.getLong("since");
             }
             return 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return 0;
     }
 
     private static boolean addRank(UUID uuid, String rank) {
-        try {
-            long date = System.currentTimeMillis();
-            PreparedStatement preparedStatement = SQL.prepareStatement("INSERT INTO rank (uuid, rank, since) VALUES(?, ?, ?)");
-            preparedStatement.setString(1, uuid.toString());
-            preparedStatement.setString(2, rank);
-            preparedStatement.setLong(3, date);
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+        if(SQL.isConnected()) {
+            try {
+                long date = System.currentTimeMillis();
+                PreparedStatement preparedStatement = SQL.prepareStatement("INSERT INTO rank (uuid, rank, since) VALUES(?, ?, ?)");
+                preparedStatement.setString(1, uuid.toString());
+                preparedStatement.setString(2, rank);
+                preparedStatement.setLong(3, date);
+                preparedStatement.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
+        return false;
     }
 
     private static void removeRank(UUID uuid) {
-        try {
-            PreparedStatement preparedStatement = SQL.prepareStatement("DELETE FROM rank WHERE uuid = ?");
-            preparedStatement.setString(1, uuid.toString());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(SQL.isConnected()) {
+            try {
+                PreparedStatement preparedStatement = SQL.prepareStatement("DELETE FROM rank WHERE uuid = ?");
+                preparedStatement.setString(1, uuid.toString());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

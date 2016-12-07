@@ -67,6 +67,6 @@ public class SQL {
                 return con.prepareStatement(query);
         }
         SQL.connect();
-        return con.prepareStatement(query);
+        throw new SQLException();
     }
 }

@@ -80,6 +80,7 @@ public class ADBukkit extends JavaPlugin {
         this.getCommand("back").setExecutor(new BackCommand());
         this.getCommand("rank").setExecutor(new RankManager());
         this.getCommand("filedownload").setExecutor(new DownloadCommand());
+        this.getCommand("playerhead").setExecutor(new PlayerHeadCommand());
     }
 
     public static ADBukkit getInstance() {
