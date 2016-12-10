@@ -3,6 +3,11 @@
 defaultSpawn: spawn
 spawnOnJoin: true
 
+# if player has permission ad.gamemode, it will give this player gamemode creative
+# NOTE: it doesn't will work if multiverse is installed
+#       then see @worlds.yml from multiverse
+gamemodeOnJoin: true
+
 spawns:
   spawn:
     World: world
