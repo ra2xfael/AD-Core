@@ -1,27 +1,33 @@
 package de.tigifan.core.bukkit;
 
+import de.apollodoener.api.ADPlugin;
 import de.tigifan.core.bukkit.commands.*;
 import de.tigifan.core.bukkit.listeners.*;
+import de.tigifan.core.bukkit.runnable.BackupRunnable;
 import de.tigifan.core.bukkit.sql.RankManager;
 import de.tigifan.core.bukkit.sql.SQL;
 import de.tigifan.core.bukkit.util.Config;
 import de.tigifan.core.bukkit.util.ConfigType;
 import de.tigifan.core.bukkit.util.MessageUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
 /**
  * Created by Tigifan on 12.04.2016.
  */
-public class ADBukkit extends JavaPlugin {
+public class ADBukkit extends JavaPlugin implements ADPlugin {
 
     private static ADBukkit instance;
 
-    public String Prefix = "§7[§aApolloDöner§7] ";
+    private String prefix = "§7[§aApolloDöner§7] ";
 
     private static HashMap<ConfigType, Config> configs = new HashMap<>();
+
+    private Thread backupThread = new Thread(new BackupRunnable(Bukkit.getConsoleSender()));
 
     @Override
     public void onEnable() {
@@ -36,12 +42,14 @@ public class ADBukkit extends JavaPlugin {
 
         SQL.connect();
         RankManager.createDatabase();
+        backupThread.start();
 
         MessageUtil.printConsoleMessage("&7Plugin version &6" + this.getDescription().getVersion() + " &7enabled!");
     }
 
     @Override
     public void onDisable() {
+        backupThread.interrupt();
         SQL.disconnect();
         MessageUtil.printConsoleMessage("&7Plugin disabled!");
     }
@@ -81,6 +89,7 @@ public class ADBukkit extends JavaPlugin {
         this.getCommand("rank").setExecutor(new RankManager());
         this.getCommand("filedownload").setExecutor(new DownloadCommand());
         this.getCommand("playerhead").setExecutor(new PlayerHeadCommand());
+        this.getCommand("backup").setExecutor(new BackupCommand());
     }
 
     public static ADBukkit getInstance() {
@@ -88,6 +97,15 @@ public class ADBukkit extends JavaPlugin {
     }
 
     private void initalize() {
-        Prefix = ChatColor.translateAlternateColorCodes('&', ADBukkit.getConfig(ConfigType.MESSAGES).getConfig().getString("Prefix"));
+        prefix = ChatColor.translateAlternateColorCodes('&', ADBukkit.getConfig(ConfigType.MESSAGES).getConfig().getString("Prefix"));
     }
+
+    @NotNull
+    @Override
+    public String getPrefix() {
+        return prefix;
+    }
+
+    @Override
+    public void setPrefix(String s) { this.prefix = s; }
 }

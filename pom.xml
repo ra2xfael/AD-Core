@@ -88,6 +88,10 @@
             <id>pp</id>
             <url>http://nexus.myplayplanet.net/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>apollodoener</id>
+            <url>http://nexus.apollodoener.de/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -95,6 +99,11 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.9-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.apollodoener</groupId>
+            <artifactId>API</artifactId>
+            <version>0.0.9-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

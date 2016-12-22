@@ -68,4 +68,7 @@ download:
 playerhead:
   syntax: '&c/ph <Spielername>'
   success: '&7Du hast den Kopf von &l%player% &7erhalten!'
-
+backup:
+  start: '&cEin Backup wurde von %sender% gestartet!'
+  success: '&cDas Backup %file% wurde abgeschlossen!'
+  automatic: '&cEin automatisches Backup wird nun gestartet!'

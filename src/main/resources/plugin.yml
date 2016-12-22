@@ -2,6 +2,7 @@ name: AD-Core
 version: 1.1.6
 author: Tigifan
 main: de.tigifan.core.bukkit.ADBukkit
+depend: [ADAPI]
 
 commands:
     gamemode:
@@ -41,4 +42,8 @@ commands:
         description: Gibt dir einen Spielerkopf
         permission: ad.playerhead
         aliases: [ph]
+    backup:
+        description: Erstellt ein Backup
+        permission: ad.backup
+        aliases: [adbackup, adbu, bu]
 

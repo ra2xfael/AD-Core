@@ -8,6 +8,10 @@ spawnOnJoin: true
 #       then see @worlds.yml from multiverse
 gamemodeOnJoin: true
 
+backup:
+  serverlocation: /home/minecraft/ad
+  backuplocation: /home/minecraft/backup
+
 spawns:
   spawn:
     World: world
