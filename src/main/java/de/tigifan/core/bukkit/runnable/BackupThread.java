@@ -9,20 +9,21 @@ import org.bukkit.command.CommandSender;
 /**
  * Created by raffael on 22.12.16.
  */
-public class BackupRunnable implements Runnable {
+public class BackupThread extends Thread {
 
     private CommandSender sender;
 
-    public BackupRunnable(CommandSender sender) {
+    public BackupThread(CommandSender sender) {
         this.sender = sender;
+        this.start();
     }
 
     @Override
     public void run() {
-        while (true) {
+        while (isInterrupted()) {
             try {
                 Bukkit.broadcastMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("backup.automatic"));
-                Thread.sleep( 6 * 60 * 60 * 1000);
+                Thread.sleep( 24 * 60 * 60 * 1000);
                 BackupCommand.backup(sender);
             } catch (InterruptedException e) {
                 e.printStackTrace();

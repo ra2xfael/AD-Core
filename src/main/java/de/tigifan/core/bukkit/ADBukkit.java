@@ -3,7 +3,7 @@ package de.tigifan.core.bukkit;
 import de.apollodoener.api.ADPlugin;
 import de.tigifan.core.bukkit.commands.*;
 import de.tigifan.core.bukkit.listeners.*;
-import de.tigifan.core.bukkit.runnable.BackupRunnable;
+import de.tigifan.core.bukkit.runnable.BackupThread;
 import de.tigifan.core.bukkit.sql.RankManager;
 import de.tigifan.core.bukkit.sql.SQL;
 import de.tigifan.core.bukkit.util.Config;
@@ -27,7 +27,7 @@ public class ADBukkit extends JavaPlugin implements ADPlugin {
 
     private static HashMap<ConfigType, Config> configs = new HashMap<>();
 
-    private Thread backupThread = new Thread(new BackupRunnable(Bukkit.getConsoleSender()));
+    private Thread backupThread = new BackupThread(Bukkit.getConsoleSender());
 
     @Override
     public void onEnable() {
@@ -42,7 +42,6 @@ public class ADBukkit extends JavaPlugin implements ADPlugin {
 
         SQL.connect();
         RankManager.createDatabase();
-        backupThread.start();
 
         MessageUtil.printConsoleMessage("&7Plugin version &6" + this.getDescription().getVersion() + " &7enabled!");
     }
