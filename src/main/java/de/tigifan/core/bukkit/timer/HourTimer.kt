@@ -1,4 +1,4 @@
-package de.tigifan.core.bukkit.commands.timer
+package de.tigifan.core.bukkit.timer
 
 import java.util.*
 

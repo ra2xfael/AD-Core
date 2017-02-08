@@ -11,8 +11,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public class PlayerLeaveListener implements Listener {
 
-    @EventHandler
-    public void onLeave(PlayerQuitEvent event) {
-        event.setQuitMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("leave").replace("%player%", event.getPlayer().getName()));
-    }
+  @EventHandler
+  public void onLeave(PlayerQuitEvent event) {
+    event.setQuitMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("leave").replace("%player%", event.getPlayer().getName()));
+  }
 }

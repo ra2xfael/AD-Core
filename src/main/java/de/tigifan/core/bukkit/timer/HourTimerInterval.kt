@@ -1,4 +1,4 @@
-package de.tigifan.core.bukkit.commands.timer
+package de.tigifan.core.bukkit.timer
 
 /**
  * Created by raffael on 24.01.17.

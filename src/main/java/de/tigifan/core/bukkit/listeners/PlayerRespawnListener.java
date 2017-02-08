@@ -13,15 +13,15 @@ import org.bukkit.event.player.PlayerRespawnEvent;
  */
 public class PlayerRespawnListener implements Listener {
 
-    @EventHandler
-    public void onRespawn(PlayerRespawnEvent ev) {
-        Player player = ev.getPlayer();
+  @EventHandler
+  public void onRespawn(PlayerRespawnEvent ev) {
+    Player player = ev.getPlayer();
 
-        String defaultSpawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
-        if (SpawnCommand.getLocation("spawns." + defaultSpawn).getBlockY() == 0) {
-            player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.defaultNotSet").replace("%spawn%", defaultSpawn));
-            return;
-        }
-        ev.setRespawnLocation(SpawnCommand.getLocation("spawns." + defaultSpawn));
+    String defaultSpawn = ADBukkit.getConfig(ConfigType.CONFIGURATION).getConfig().getString("defaultSpawn");
+    if (SpawnCommand.getLocation("spawns." + defaultSpawn).getBlockY() == 0) {
+      player.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("setspawn.defaultNotSet").replace("%spawn%", defaultSpawn));
+      return;
     }
+    ev.setRespawnLocation(SpawnCommand.getLocation("spawns." + defaultSpawn));
+  }
 }

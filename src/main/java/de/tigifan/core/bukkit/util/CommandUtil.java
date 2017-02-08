@@ -10,13 +10,13 @@ import org.bukkit.entity.Player;
  */
 public class CommandUtil {
 
-    public static Player getPlayer(CommandSender sender, String playerName) {
-        Player targetPlayer = null;
-        try {
-            targetPlayer = Bukkit.getPlayer(playerName);
-        } catch (Exception ex) {
-            sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("playerNotFound"));
-        }
-        return targetPlayer;
+  public static Player getPlayer(CommandSender sender, String playerName) {
+    Player targetPlayer = null;
+    try {
+      targetPlayer = Bukkit.getPlayer(playerName);
+    } catch (Exception ex) {
+      sender.sendMessage(ADBukkit.getConfig(ConfigType.MESSAGES).getMessage("playerNotFound"));
     }
+    return targetPlayer;
+  }
 }
