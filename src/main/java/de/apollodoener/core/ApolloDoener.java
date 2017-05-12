@@ -3,12 +3,10 @@ package de.apollodoener.core;
 import de.apollodoener.api.ADPlugin;
 import de.apollodoener.core.commands.*;
 import de.apollodoener.core.listeners.*;
-import de.apollodoener.core.timer.BackupTimer;
-import de.apollodoener.core.timer.HourTimer;
-import de.apollodoener.core.util.ConfigType;
 import de.apollodoener.core.sql.RankManager;
 import de.apollodoener.core.sql.SQL;
 import de.apollodoener.core.util.Config;
+import de.apollodoener.core.util.ConfigType;
 import de.apollodoener.core.util.MessageUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +22,6 @@ public class ApolloDoener extends JavaPlugin implements ADPlugin {
   private static ApolloDoener instance;
 
   private String prefix = "§7[§aApolloDöner§7] ";
-  private HourTimer timer = new HourTimer();
 
   private static HashMap<ConfigType, Config> configs = new HashMap<>();
 
@@ -40,7 +37,6 @@ public class ApolloDoener extends JavaPlugin implements ADPlugin {
 
     registerEvents();
     registerCommands();
-    startTimer();
 
     SQL.connect();
     RankManager.createDatabase();
@@ -91,12 +87,6 @@ public class ApolloDoener extends JavaPlugin implements ADPlugin {
     this.getCommand("filedownload").setExecutor(new DownloadCommand());
     this.getCommand("playerhead").setExecutor(new PlayerHeadCommand());
     this.getCommand("backup").setExecutor(new BackupCommand());
-  }
-
-  private void startTimer() {
-    timer.registerTimer(new BackupTimer());
-
-    timer.start();
   }
 
   public static ApolloDoener getInstance() {
